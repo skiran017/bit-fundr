@@ -1,6 +1,7 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 // import * as serviceWorker from './serviceWorker';
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <StrictMode>
-    <ColorModeScript />
-    <App />
+    <BrowserRouter>
+      <ColorModeScript />
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );
 
@@ -19,4 +22,3 @@ root.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorker.unregister();
-
