@@ -17,12 +17,16 @@ import {
 import { FiMenu, FiX } from 'react-icons/fi';
 
 import { ColorModeSwitcher } from '../ColorModeSwitch/ColorModeSwitcher';
+import { useStateContext } from '../../context';
 import DesktopNav from './components/DesktopNav';
 import MobileNav from './components/MobileNav';
+import CustomButton from '../CustomButton/CustomButton';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { isOpen, onToggle } = useDisclosure();
+
+  const { connectResponse, account, handleLogin } = useStateContext();
 
   return (
     <Box>
@@ -70,24 +74,13 @@ export default function Navbar() {
           direction={'row'}
           spacing={6}
         >
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}
-          >
-            Sign In
-          </Button>
-          <Button
+          {/* <Button
             variant="ghost"
             as={'a'}
             href={'#'}
-            display={{ base: 'none', md: 'inline-flex' }}
+            // display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
-            // color={'GrayText'}
-            // bg={'white'}
             _hover={{
               background: '#ff910026',
             }}
@@ -99,7 +92,11 @@ export default function Navbar() {
             boxShadow="brand.custom"
           >
             Sign Up
-          </Button>
+          </Button> */}
+          <CustomButton
+            handleClick={handleLogin}
+            title={account ? 'Create a campaign' : 'Connect'}
+          />
         </Stack>
         <ColorModeSwitcher
           justifySelf="flex-end"
