@@ -78,7 +78,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         <Box>
           <Text
             transition={'all .3s ease'}
-            _groupHover={{ color: 'brand.custom' }}
+            // _groupHover={{ color: 'brand.custom' }}
             fontWeight={500}
           >
             {label}
