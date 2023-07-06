@@ -6,7 +6,6 @@ import {
   Flex,
   Text,
   IconButton,
-  Button,
   Stack,
   Collapse,
   useColorModeValue,
@@ -22,11 +21,12 @@ import DesktopNav from './components/DesktopNav';
 import MobileNav from './components/MobileNav';
 import CustomButton from '../CustomButton/CustomButton';
 
+
 export default function Navbar() {
   const navigate = useNavigate();
   const { isOpen, onToggle } = useDisclosure();
 
-  const { connectResponse, account, handleLogin } = useStateContext();
+  const {  account, handleLogin } = useStateContext();
 
   return (
     <Box>
@@ -93,9 +93,14 @@ export default function Navbar() {
           >
             Sign Up
           </Button> */}
+
           <CustomButton
             handleClick={handleLogin}
-            title={account ? 'Create a campaign' : 'Connect'}
+            title={
+              account
+                ? account.slice(0, 5) + '...' + account?.slice(38, 42)
+                : 'Connect'
+            }
           />
         </Stack>
         <ColorModeSwitcher

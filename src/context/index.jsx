@@ -63,7 +63,7 @@ export const StateContextProvider = ({ children }) => {
   const [rLoginResponse, setRLoginResponse] = useState(null);
 
   // wallet info:
-  const [account, setAccount] = useState(null);
+  const [account, setAccount] = useState('');
   const [chainId, setChainId] = useState(null);
   const [connectResponse, setConnectResponse] = useState(null);
 
@@ -201,20 +201,20 @@ export const StateContextProvider = ({ children }) => {
   };
 
   // Send transaction
-  // const handleSendTransactionEthers = (to, value) => {
-  //   setSendResponse('loading...');
-  //   if (rLoginResponse !== null) {
-  //     const provider = new ethers.providers.Web3Provider(
-  //       rLoginResponse.provider
-  //     );
-  //     const signer = provider.getSigner();
-  //     setSendResponse('Please check your wallet');
-  //     signer
-  //       .sendTransaction({ to: to.toLowerCase(), value: parseInt(value) })
-  //       .then(response => setSendResponse(response.hash))
-  //       .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
-  //   }
-  // };
+  const handleSendTransactionEthers = (to, value) => {
+    setSendResponse('loading...');
+    if (rLoginResponse !== null) {
+      const provider = new ethers.providers.Web3Provider(
+        rLoginResponse.provider
+      );
+      const signer = provider.getSigner();
+      setSendResponse('Please check your wallet');
+      signer
+        .sendTransaction({ to: to.toLowerCase(), value: parseInt(value) })
+        .then(response => setSendResponse(response.hash))
+        .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
+    }
+  };
 
   // handle logging out
   const handleLogOut = response => {
