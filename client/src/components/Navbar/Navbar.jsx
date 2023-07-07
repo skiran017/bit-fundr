@@ -19,8 +19,7 @@ import { useStateContext } from '../../context';
 import DesktopNav from './components/DesktopNav';
 import MobileNav from './components/MobileNav';
 import CustomButton from '../CustomButton/CustomButton';
-import { navlinks } from '../../utils/constants';
-import Sidebar from '../Sidebar/Sidebar';
+
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();

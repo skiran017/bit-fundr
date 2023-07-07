@@ -1,7 +1,12 @@
 import React from 'react';
+import { Box } from '@chakra-ui/react';
 
 function Explore() {
-  return <div>Explore</div>;
+  return (
+    <Box p="12px" w="100%">
+      Explore
+    </Box>
+  );
 }
 
 export default Explore;

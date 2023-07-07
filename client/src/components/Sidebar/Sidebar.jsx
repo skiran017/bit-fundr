@@ -11,7 +11,7 @@ import SidebarContent from './components/SidebarContent';
 function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="72vh" bg={useColorModeValue('gray.100', 'gray.900')} w={60}>
+    <Box bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -23,7 +23,7 @@ function Sidebar() {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        // size="full"
+        size="xs"
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />

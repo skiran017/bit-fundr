@@ -4,7 +4,6 @@ import {
   Box,
   Flex,
   Text,
-  CloseButton,
   Link,
   Icon,
 } from '@chakra-ui/react';
@@ -18,8 +17,7 @@ function SidebarContent({ onClose, ...rest }) {
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos="fixed"
-      h="full"
+      h="74vh"
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
