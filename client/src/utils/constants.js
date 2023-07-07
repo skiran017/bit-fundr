@@ -1,20 +1,19 @@
-export const navlinks = [
+import { FiGrid, FiPlusSquare, FiCreditCard } from 'react-icons/fi';
+import { FaBitcoin } from 'react-icons/fa';
+
+export const NAV_ITEMS = [
   {
-    name: 'dashboard',
-    imgUrl: '',
-    link: '/',
+    label: 'Home',
+    href: '/',
   },
-  // {
-  //   name: 'campaign',
-  //   imgUrl: createCampaign,
-  //   link: '/create-campaign',
-  // },
-  // {
-  //   name: 'payment',
-  //   imgUrl: payment,
-  //   link: '/',
-  //   disabled: true,
-  // },
+  {
+    label: 'About Us',
+    href: '/about',
+  },
+  {
+    label: 'Explore',
+    href: '/campaigns',
+  },
   // {
   //   name: 'withdraw',
   //   imgUrl: withdraw,
@@ -34,39 +33,27 @@ export const navlinks = [
   // },
 ];
 
-export const NAV_ITEMS = [
+export const sibeBarLinkItems = [
   {
     label: 'Dashboard',
-    href: '/',
-    // icon: <Dashboard />,
+    href: '/dashboard',
+    icon: FiGrid,
   },
   {
-    label: 'Campaigns',
-    children: [
-      {
-        label: 'Create Campaign',
-        subLabel: 'Find your dream design job',
-        href: '/create-campaign',
-      },
-      {
-        label: 'Existing Campaigns',
-        subLabel: '',
-        href: '/all-campaigns',
-      },
-    ],
+    label: 'Create Campaign',
+    href: '/create-campaign',
+    icon: FiPlusSquare,
   },
   {
     label: 'Payment',
-    href: '#',
+    href: '/payment',
+    icon: FiCreditCard,
     disabled: true,
   },
   {
     label: 'Withdraw',
-    href: '#',
+    href: '/withdraw',
+    icon: FaBitcoin,
     disabled: true,
-  },
-  {
-    label: 'Profile',
-    href: '/profile',
   },
 ];
