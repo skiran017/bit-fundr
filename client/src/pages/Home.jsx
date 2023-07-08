@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 function Home() {
   return (
-    <Box p="12px">
+    <Box p="66px 6px 6px 6px" height="80vh">
       Home Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
       pariatur consectetur deleniti sunt illum neque nemo at officia quis,
       incidunt nobis. Aperiam a iure necessitatibus rem odit pariatur, ea illo

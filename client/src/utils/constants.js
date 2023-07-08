@@ -12,7 +12,7 @@ export const NAV_ITEMS = [
   },
   {
     label: 'Explore',
-    href: '/campaigns',
+    href: '/',
   },
   // {
   //   name: 'withdraw',

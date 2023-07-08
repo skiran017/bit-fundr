@@ -82,6 +82,7 @@ export default function Footer() {
               </SocialButton>
             </Stack>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Company</ListHeader>
             <Link href={'#'}>About us</Link>
@@ -89,6 +90,7 @@ export default function Footer() {
             <Link href={'#'}>Contact us</Link>
             <Link href={'#'}>Testimonials</Link>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Support</ListHeader>
             <Link href={'#'}>Help Center</Link>
@@ -96,6 +98,7 @@ export default function Footer() {
             <Link href={'#'}>Legal</Link>
             <Link href={'#'}>Privacy Policy</Link>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Stay up to date</ListHeader>
             <Stack direction={'row'}>

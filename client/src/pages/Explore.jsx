@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 function Explore() {
   return (
-    <Box p="12px" w="100%">
+    <Box p="66px 6px 6px 6px" height="80vh">
       Explore
     </Box>
   );

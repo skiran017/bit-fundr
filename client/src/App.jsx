@@ -6,19 +6,29 @@ import Footer from './components/Footer/Footer';
 import { About, Explore, Home } from './pages';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
+import { useStateContext } from './context';
 
 function App() {
+  const { account } = useStateContext();
+
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/campaigns" element={<Explore />} />
-        </Routes>
-      </Layout>
-      <Footer />
+
+      {account ? (
+        <>
+          <Layout />
+        </>
+      ) : (
+        <>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/" element={<Explore />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
     </ChakraProvider>
   );
 }
