@@ -5,29 +5,28 @@ import DisplayCampaigns from '../components/DisplayCampaigns/DisplayCampaigns';
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
-  const [campaigns, setCampaigns] = useState([]);
+  const [userCampaigns, setUserCampaigns] = useState([]);
 
-  const { address, contract, getCampaigns } = useStateContext();
+  const { account, contract, getUserCampaigns } = useStateContext();
 
-  const fetchCampaigns = async () => {
+  const fetchUserCampaigns = async () => {
     setIsLoading(true);
-    const data = await getCampaigns();
-    setCampaigns(data);
+    const data = await getUserCampaigns();
+    setUserCampaigns(data);
     setIsLoading(false);
   };
-
   useEffect(() => {
-    if (contract) fetchCampaigns();
-  }, [address, contract]);
+    if (contract) fetchUserCampaigns();
+  }, [account, contract]);
 
-  console.log({ campaigns });
+  console.log({ userCampaigns });
 
   return (
     <Box p="6px" w="100%">
       <DisplayCampaigns
-        title="All Campaigns"
+        title="Your Campaigns"
         isLoading={isLoading}
-        campaigns={campaigns}
+        campaigns={userCampaigns}
       />
     </Box>
   );

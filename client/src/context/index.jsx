@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext, useEffect } from 'react';
 import RLogin from '@rsksmart/rlogin';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Eth from 'ethjs-query';
@@ -64,7 +64,7 @@ export const StateContextProvider = ({ children }) => {
   const [rLoginResponse, setRLoginResponse] = useState(null);
 
   // wallet info:
-  const [account, setAccount] = useState('');
+  const [account, setAccount] = useState();
   const [chainId, setChainId] = useState(null);
   const [connectResponse, setConnectResponse] = useState(null);
 
@@ -83,6 +83,10 @@ export const StateContextProvider = ({ children }) => {
 
   //contract
   const [contract, setContract] = useState();
+
+  const provider = new ethers.providers.JsonRpcProvider(
+    'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
+  );
 
   // Use the rLogin instance to connect to the provider
   const handleLogin = () => {
@@ -231,23 +235,33 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const getContract = async () => {
-    const provider = new ethers.providers.Web3Provider(rLoginResponse.provider);
+    // const provider = new ethers.providers.Web3Provider(
+    //   'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
+    // );
 
     const contract = new ethers.Contract(
       '0x0302829c2288D7db1940c0116B2ADE6d89cf35d4'.toLowerCase(),
       CROWDFUND_ABI,
       provider
     );
-    setContract(contract);
     return contract;
   };
   console.log({ contract });
 
+  const fetchContract = async () => {
+    const contract = await getContract();
+    setContract(contract);
+  };
+
+  useEffect(() => {
+    fetchContract();
+  }, [account]);
+
   const getCampaigns = async () => {
     let campaigns, parsedCampaings;
 
-    const ctr = await getContract();
-    campaigns = await ctr.getCampaigns();
+    campaigns = await contract.getCampaigns();
+
     parsedCampaings = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
       title: campaign.title,
@@ -267,9 +281,9 @@ export const StateContextProvider = ({ children }) => {
   const getUserCampaigns = async () => {
     const allCampaigns = await getCampaigns();
 
-    const filteredCampaigns = allCampaigns.filter(
-      campaign => campaign.owner === account
-    );
+    const filteredCampaigns = allCampaigns.filter(campaign => {
+      return campaign.owner.toLowerCase() === account.toLowerCase();
+    });
 
     return filteredCampaigns;
   };

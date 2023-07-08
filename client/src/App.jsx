@@ -12,8 +12,6 @@ function App() {
   const { account } = useStateContext();
   const href = useHref();
 
-  console.log({ href });
-
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
