@@ -55,6 +55,7 @@ export default function Footer() {
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
+      // position="relative"
     >
       <Container as={Stack} maxW={'6xl'} py={10}>
         <SimpleGrid
@@ -81,6 +82,7 @@ export default function Footer() {
               </SocialButton>
             </Stack>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Company</ListHeader>
             <Link href={'#'}>About us</Link>
@@ -88,6 +90,7 @@ export default function Footer() {
             <Link href={'#'}>Contact us</Link>
             <Link href={'#'}>Testimonials</Link>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Support</ListHeader>
             <Link href={'#'}>Help Center</Link>
@@ -95,6 +98,7 @@ export default function Footer() {
             <Link href={'#'}>Legal</Link>
             <Link href={'#'}>Privacy Policy</Link>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Stay up to date</ListHeader>
             <Stack direction={'row'}>

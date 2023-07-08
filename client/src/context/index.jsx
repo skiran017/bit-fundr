@@ -8,6 +8,7 @@ import { trezorProviderOptions } from '@rsksmart/rlogin-trezor-provider';
 import { ledgerProviderOptions } from '@rsksmart/rlogin-ledger-provider';
 import { dcentProviderOptions } from '@rsksmart/rlogin-dcent-provider';
 import Web3 from 'web3';
+import CROWDFUND_ABI from '../abi/crowdfund.json';
 
 import { ethers } from 'ethers';
 
@@ -226,6 +227,19 @@ export const StateContextProvider = ({ children }) => {
     response.disconnect();
   };
 
+  const getContract = async () => {
+    const provider = new ethers.providers.Web3Provider(rLoginResponse.provider);
+
+    const contract = new ethers.Contract(
+      '0x0302829c2288D7db1940c0116B2ADE6d89cf35d4'.toLowerCase(),
+      CROWDFUND_ABI,
+      provider
+    );
+
+    console.log({ contract });
+    return contract;
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -235,6 +249,7 @@ export const StateContextProvider = ({ children }) => {
         connectResponse,
         handleLogin,
         handleLogOut,
+        getContract,
         //contract
         // createCampaign: publishCampaign,
         // getCampaigns,

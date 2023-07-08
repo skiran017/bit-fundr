@@ -1,0 +1,36 @@
+import React from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from './utils/theme';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import { About, Explore, Home } from './pages';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import { useStateContext } from './context';
+
+function App() {
+  const { account } = useStateContext();
+
+  return (
+    <ChakraProvider theme={theme}>
+      <Navbar />
+
+      {account ? (
+        <>
+          <Layout />
+        </>
+      ) : (
+        <>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/" element={<Explore />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
+    </ChakraProvider>
+  );
+}
+
+export default App;
