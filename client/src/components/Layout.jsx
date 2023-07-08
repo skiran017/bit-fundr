@@ -11,10 +11,11 @@ function Layout({ children }) {
     <>
       <Flex h="100vh" p="66px 6px 10px 0" w="100%">
         <Sidebar />
+        {/* <Dashboard /> */}
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-        {children}
+        {/* {children} */}
       </Flex>
     </>
   );

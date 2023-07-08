@@ -10,6 +10,14 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Avatar,
+  Menu,
+  MenuList,
+  MenuButton,
+  Center,
+  Button,
+  MenuDivider,
+  MenuItem,
 } from '@chakra-ui/react';
 
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -19,11 +27,11 @@ import { useStateContext } from '../../context';
 import DesktopNav from './components/DesktopNav';
 import MobileNav from './components/MobileNav';
 import CustomButton from '../CustomButton/CustomButton';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const navigate = useNavigate();
   const { account, handleLogin } = useStateContext();
 
   return (
@@ -83,7 +91,43 @@ export default function Navbar() {
             fontWeight={600}
             title={'Sign Up'}
           /> */}
-
+          {account && (
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}
+                border="brand.custom"
+              >
+                <Avatar
+                  size={'sm'}
+                  src={'https://avatars.dicebear.com/api/male/username.svg'}
+                />
+              </MenuButton>
+              <MenuList alignItems={'center'}>
+                <br />
+                <Center>
+                  <Avatar
+                    size={'2xl'}
+                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                  />
+                </Center>
+                <br />
+                <Center>
+                  <p>Username</p>
+                </Center>
+                <br />
+                <MenuDivider />
+                <MenuItem onClick={() => navigate('/dashboard')}>
+                  Dashboard
+                </MenuItem>
+                <MenuItem>Account Settings</MenuItem>
+                <MenuItem>Logout</MenuItem>
+              </MenuList>
+            </Menu>
+          )}
           <CustomButton
             handleClick={handleLogin}
             title={

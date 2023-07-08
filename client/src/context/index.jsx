@@ -81,6 +81,9 @@ export const StateContextProvider = ({ children }) => {
   const [signTypedDataInput, setSignTypedDataInput] = useState('');
   const [signTypedDataResponse, setSignTypedDataResponse] = useState(null);
 
+  //contract
+  const [contract, setContract] = useState();
+
   // Use the rLogin instance to connect to the provider
   const handleLogin = () => {
     rLogin
@@ -235,9 +238,40 @@ export const StateContextProvider = ({ children }) => {
       CROWDFUND_ABI,
       provider
     );
-
-    console.log({ contract });
+    setContract(contract);
     return contract;
+  };
+  console.log({ contract });
+
+  const getCampaigns = async () => {
+    let campaigns, parsedCampaings;
+
+    const ctr = await getContract();
+    campaigns = await ctr.getCampaigns();
+    parsedCampaings = campaigns.map((campaign, i) => ({
+      owner: campaign.owner,
+      title: campaign.title,
+      description: campaign.description,
+      target: ethers.utils.formatEther(campaign.target.toString()),
+      deadline: campaign.deadline.toNumber(),
+      amountCollected: ethers.utils.formatEther(
+        campaign.amountCollected.toString()
+      ),
+      image: campaign.image,
+      pId: i,
+    }));
+
+    return parsedCampaings;
+  };
+
+  const getUserCampaigns = async () => {
+    const allCampaigns = await getCampaigns();
+
+    const filteredCampaigns = allCampaigns.filter(
+      campaign => campaign.owner === account
+    );
+
+    return filteredCampaigns;
   };
 
   return (
@@ -249,11 +283,10 @@ export const StateContextProvider = ({ children }) => {
         connectResponse,
         handleLogin,
         handleLogOut,
-        getContract,
-        //contract
+        contract,
         // createCampaign: publishCampaign,
-        // getCampaigns,
-        // getUserCampaigns,
+        getCampaigns,
+        getUserCampaigns,
         // donate,
         // getDonations,
       }}

@@ -12,18 +12,17 @@ export const NAV_ITEMS = [
   },
   {
     label: 'Explore',
-    href: '/',
+    href: '/all-campaigns',
   },
+  // {
+  //   label: 'Profile',
+  //   href: '/dashboard',
+  // },
   // {
   //   name: 'withdraw',
   //   imgUrl: withdraw,
   //   link: '/',
   //   disabled: true,
-  // },
-  // {
-  //   name: 'profile',
-  //   imgUrl: profile,
-  //   link: '/profile',
   // },
   // {
   //   name: 'logout',
