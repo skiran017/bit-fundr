@@ -33,6 +33,7 @@ function AmountCard({
       //   transition: '0.6s',
       // }}
       boxShadow="brand.custom"
+      mb="10px"
     >
       <Image
         src={image}
@@ -94,7 +95,7 @@ function AmountCard({
 
         <Flex justifyItems="center" mt="20px" gap="12px">
           <chakra.p>
-            by <chakra.span>{owner}</chakra.span>
+            by <chakra.span wordBreak="break-word">{owner}</chakra.span>
           </chakra.p>
         </Flex>
       </Flex>

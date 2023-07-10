@@ -150,7 +150,7 @@ function CampaignDetails() {
                   color="#808191"
                   className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]"
                 >
-                  {userCampaigns.length}
+                  {userCampaigns.length} Campaign(s)
                 </chakra.p>
               </Box>
             </Flex>
