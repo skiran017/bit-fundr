@@ -1,5 +1,12 @@
 import React from 'react';
-import { Flex, Text, Box, Image, chakra } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  Box,
+  Image,
+  chakra,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { daysLeft } from '../../utils/helpers';
 
 function AmountCard({
@@ -15,7 +22,18 @@ function AmountCard({
   const remainingDays = daysLeft(deadline);
 
   return (
-    <Box onClick={handleClick} rounded="14px" cursor="pointer" width="full">
+    <Box
+      onClick={handleClick}
+      rounded="14px"
+      cursor="pointer"
+      bg={useColorModeValue('gray.200', 'gray.900')}
+      // border="brand.custom"
+      // _hover={{
+      //   transform: 'scale(1.01)',
+      //   transition: '0.6s',
+      // }}
+      boxShadow="brand.custom"
+    >
       <Image
         src={image}
         alt="fund-card"
@@ -25,7 +43,8 @@ function AmountCard({
         rounded="14px"
       />
       <Flex direction="column" p="4">
-        <Flex direction="row" justifyItems="center" mb="18px">
+        {/* TODO: make dynamic categories list*/}
+        {/* <Flex direction="row" justifyItems="center" mb="18px">
           <Image
             w="16px"
             h="16px"
@@ -33,9 +52,8 @@ function AmountCard({
             alt="tag"
             // src={tagType}
           />
-          {/* TODO: make dynamic categories list*/}
           <Text>Education</Text>
-        </Flex>
+        </Flex> */}
 
         <Box display="block">
           <chakra.h3

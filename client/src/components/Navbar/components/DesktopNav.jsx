@@ -1,9 +1,11 @@
 import React from 'react';
 import { useColorModeValue, Stack, Box, Link } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import { NAV_ITEMS } from '../../../utils/constants';
 
 const DesktopNav = () => {
+  const navigate = useNavigate();
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
 
@@ -13,7 +15,8 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Link
             p={2}
-            href={navItem.href ?? '#'}
+            onClick={() => navigate(navItem.href)}
+            // href={navItem.href ?? '#'}
             fontSize={'sm'}
             fontWeight={600}
             color={linkColor}

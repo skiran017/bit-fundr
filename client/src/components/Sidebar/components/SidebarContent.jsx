@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useColorModeValue,
   Box,
@@ -8,8 +8,11 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { sibeBarLinkItems } from '../../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 function SidebarContent({ onClose, ...rest }) {
+  const navigate = useNavigate();
+  const [isActive, setIsActive] = useState('Dashboard');
   return (
     <Box
       transition="3s ease"
@@ -17,7 +20,7 @@ function SidebarContent({ onClose, ...rest }) {
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      h="full"
+      h="94vh"
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
@@ -26,7 +29,17 @@ function SidebarContent({ onClose, ...rest }) {
         </Text>
       </Flex>
       {sibeBarLinkItems.map(link => (
-        <NavItem key={link.label} icon={link.icon} href={link.href}>
+        <NavItem
+          key={link.label}
+          icon={link.icon}
+          // isActive={isActive}
+          handleClick={() => {
+            if (!link.disabled) {
+              setIsActive(link.label);
+              navigate(link.href);
+            }
+          }}
+        >
           {link.label}
         </NavItem>
       ))}
@@ -34,40 +47,45 @@ function SidebarContent({ onClose, ...rest }) {
   );
 }
 
-const NavItem = ({ icon, children, href, ...rest }) => {
+const NavItem = ({ icon, children, handleClick, ...rest }) => {
   return (
-    <Link
-      href={href}
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}
+    // <Link
+    //   href={href}
+    //   style={{ textDecoration: 'none' }}
+    //   _focus={{ boxShadow: 'none' }}
+    // >
+    <Flex
+      align="center"
+      p="4"
+      mx="4"
+      borderRadius="lg"
+      role="group"
+      cursor="pointer"
+      _hover={{
+        bg: '#ff910026',
+        color: useColorModeValue('gray.800', 'gray.200'),
+      }}
+      {...rest}
+      onClick={handleClick}
+      _active={{
+        transform: 'scale(0.98)',
+      }}
     >
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: '#ff910026',
-          color: useColorModeValue('gray.800', 'gray.200'),
-        }}
-        {...rest}
-      >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="20"
-            color="brand.custom"
-            // _groupHover={{
-            //   color: 'brand.custom',
-            // }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
+      {icon && (
+        <Icon
+          mr="4"
+          fontSize="20"
+          // color="brand.custom"
+          _groupHover={{
+            color: 'brand.custom',
+          }}
+          boxShadow="brand.custom"
+          as={icon}
+        />
+      )}
+      {children}
+    </Flex>
+    // </Link>
   );
 };
 
