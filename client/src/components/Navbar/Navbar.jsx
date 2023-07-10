@@ -46,9 +46,12 @@ export default function Navbar() {
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}
-        as="header"
+        as="nav"
         position="fixed"
         w="100%"
+        // position="sticky"
+        // top={0}
+        // zIndex={20}
       >
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -120,11 +123,31 @@ export default function Navbar() {
                 </Center>
                 <br />
                 <MenuDivider />
-                <MenuItem onClick={() => navigate('/dashboard')}>
+                <MenuItem
+                  onClick={() => navigate('/dashboard')}
+                  _hover={{
+                    bg: '#ff910026',
+                  }}
+                  _focus={{
+                    bg: '#ff910026',
+                  }}
+                >
                   Dashboard
                 </MenuItem>
-                <MenuItem>Account Settings</MenuItem>
-                <MenuItem>Logout</MenuItem>
+                <MenuItem
+                  _hover={{
+                    bg: '#ff910026',
+                  }}
+                >
+                  Account Settings
+                </MenuItem>
+                <MenuItem
+                  _hover={{
+                    bg: '#ff910026',
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </MenuList>
             </Menu>
           )}

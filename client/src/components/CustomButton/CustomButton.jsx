@@ -5,7 +5,10 @@ function CustomButton({ btnType, title, handleClick, ...props }) {
   return (
     <Button
       variant="ghost"
-      fontWeight={600}
+      fontWeight={'semibold'}
+      fontSize="16px"
+      px={4}
+      rounded="10px"
       _hover={{
         background: '#ff910026',
       }}

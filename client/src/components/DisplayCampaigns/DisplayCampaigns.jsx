@@ -2,10 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AmountCard from '../AmountCard/AmountCard';
 import { chakra, Spinner, Flex, Box } from '@chakra-ui/react';
+import { useStateContext } from '../../context';
 
 function DisplayCampaigns({ title, isLoading, campaigns }) {
   const navigate = useNavigate();
-
+  const { account } = useStateContext();
   const handleNavigate = campaign => {
     navigate(`/campaign-details/${campaign.title}`, { state: campaign });
   };
@@ -29,7 +30,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
             <AmountCard
               key={campaign.pId}
               {...campaign}
-              handleClick={() => handleNavigate(campaign)}
+              handleClick={() => account && handleNavigate(campaign)}
             />
           ))}
       </Flex>

@@ -20,10 +20,10 @@ function Explore() {
     if (contract) fetchCampaigns();
   }, [account, contract]);
 
-  console.log('explr', account, campaigns);
+  
 
   return (
-    <Box p="66px 6px 6px 6px" height="80vh">
+    <Box p="68px 12px 6px 12px" height="80vh">
       <DisplayCampaigns
         title="All Campaigns"
         isLoading={isLoading}
