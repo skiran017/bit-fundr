@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
 
 import Sidebar from './Sidebar/Sidebar';
-import { Dashboard, CampaignDetails } from '../pages';
+import { Dashboard, CampaignDetails, CreateCampaign } from '../pages';
 
 function Layout({ children }) {
   return (
@@ -14,6 +14,7 @@ function Layout({ children }) {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+          <Route path="/create-campaign" element={<CreateCampaign />} />
         </Routes>
         {/* {children} */}
       </Flex>
