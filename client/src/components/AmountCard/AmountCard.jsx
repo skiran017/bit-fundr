@@ -61,16 +61,12 @@ function AmountCard({
             textAlign="left"
             fontSize="16px"
             fontWeight="semibold"
-            // leading="26px"
+            lineHeight="26px"
             // truncate
           >
             {title}
           </chakra.h3>
-          <chakra.p
-            mt="4px"
-            textAlign="left"
-            // leading="26px"
-          >
+          <chakra.p mt="4px" textAlign="left" lineHeight="26px">
             {description}
           </chakra.p>
         </Box>
@@ -93,7 +89,7 @@ function AmountCard({
           </Flex>
         </Flex>
 
-        <Flex justifyItems="center" mt="20px" gap="12px">
+        <Flex alignItems="center" mt="20px" gap="12px">
           <chakra.p>
             by <chakra.span wordBreak="break-word">{owner}</chakra.span>
           </chakra.p>

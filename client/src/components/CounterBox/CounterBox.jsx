@@ -3,7 +3,7 @@ import { Flex, chakra, useColorModeValue } from '@chakra-ui/react';
 
 function CounterBox({ title, value }) {
   return (
-    <Flex direction="column" justifyItems="center" w="150px">
+    <Flex direction="column" alignItems="center" w="150px">
       <chakra.h4
         fontWeight="bold"
         fontSize="30px"

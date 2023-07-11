@@ -18,9 +18,14 @@ function FormField({
   return (
     <FormLabel display="flex" w="full" flexDirection="column" flex={1}>
       {labelName && (
-        <span className="font-epilogue font-medium text-[14px] leading-[22px] text-[#808191] mb-[10px]">
+        <chakra.span
+          fontWeight="medium"
+          fontSize="14px"
+          lineHeight="22px"
+          mb="10px"
+        >
           {labelName}
-        </span>
+        </chakra.span>
       )}
       {isTextArea ? (
         <Textarea
@@ -32,13 +37,21 @@ function FormField({
           py="16px"
           px={{ base: '26px', md: '16px' }}
           outline="none"
-          bg="transparent"
+          // bg="blackAlpha.100"
           fontSize="14px"
           rounded="10px"
           minW={{ sm: '300px' }}
+          _focus={{
+            bg: 'whiteAlpha.100',
+          }}
+          _focusVisible={{
+            border: 'brand.custom',
+          }}
+          position="inherit"
         />
       ) : (
         <Input
+          position="inherit"
           required
           value={value}
           onChange={handleChange}
@@ -48,10 +61,16 @@ function FormField({
           py="16px"
           px={{ base: '26px', md: '16px' }}
           outline="none"
-          bg="transparent"
           fontSize="14px"
           rounded="10px"
           minW={{ sm: '300px' }}
+          // bg="blackAlpha.100"
+          _focus={{
+            bg: 'whiteAlpha.100',
+          }}
+          _focusVisible={{
+            border: 'brand.custom',
+          }}
         />
       )}
     </FormLabel>
