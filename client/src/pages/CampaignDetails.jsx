@@ -24,7 +24,7 @@ function CampaignDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState([]);
-  const [userCampaigns, setUserCampaigns] = useState([]);
+  // const [userCampaigns, setUserCampaigns] = useState([]);
 
   const remainingDays = daysLeft(state.deadline);
 
@@ -34,16 +34,18 @@ function CampaignDetails() {
     setDonators(data);
   };
 
-  const fetchUserCampaigns = async () => {
-    setIsLoading(true);
-    const data = await getUserCampaigns();
-    setUserCampaigns(data);
-    setIsLoading(false);
-  };
+  console.log({ donators });
+
+  // const fetchUserCampaigns = async () => {
+  //   setIsLoading(true);
+  //   const data = await getUserCampaigns();
+  //   setUserCampaigns(data);
+  //   setIsLoading(false);
+  // };
 
   useEffect(() => {
     if (contract) {
-      fetchUserCampaigns();
+      // fetchUserCampaigns();
       fetchDonators();
     }
   }, [contract, account]);
@@ -121,7 +123,7 @@ function CampaignDetails() {
             <Flex
               mt="20px"
               direction="row"
-              justifyItems="center"
+              alignItems="center"
               flexWrap="wrap"
               gap="14px"
             >
@@ -144,13 +146,9 @@ function CampaignDetails() {
                 >
                   {state.owner}
                 </chakra.h4>
-                <chakra.p
-                  mt="4px"
-                  fontSize="12px"
-                  color="#808191"
-                  className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]"
-                >
-                  {userCampaigns.length}
+                <chakra.p mt="4px" fontSize="12px" color="#808191">
+                  {/* TODO:get no. of campaigns of the owner dynamically*/}
+                  {/* {userCampaigns.length} Campaign(s) */}
                 </chakra.p>
               </Box>
             </Flex>
@@ -190,7 +188,7 @@ function CampaignDetails() {
                   <Flex
                     key={`${item.donator}-${index}`}
                     justifyContent="space-between"
-                    justifyItems="center"
+                    alignItems="center"
                     gap={4}
                   >
                     <chakra.p
@@ -251,7 +249,7 @@ function CampaignDetails() {
                 bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                 border={0}
                 _focus={{
-                  bg: 'whiteAlpha.300',
+                  bg: 'white',
                 }}
                 _focusVisible={{
                   border: 'brand.custom',
@@ -286,7 +284,7 @@ function CampaignDetails() {
               <CustomButton
                 btnType="button"
                 title="Fund Campaign"
-                // handleClick={handleDonate}
+                handleClick={handleDonate}
                 w="full"
               />
             </Box>

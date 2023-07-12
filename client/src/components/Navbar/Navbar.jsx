@@ -32,7 +32,8 @@ import { useNavigate } from 'react-router-dom';
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
-  const { account, handleLogin } = useStateContext();
+  const { account, handleLogin, handleLogOut, rLoginResponse } =
+    useStateContext();
 
   return (
     <Box>
@@ -145,6 +146,7 @@ export default function Navbar() {
                   _hover={{
                     bg: '#ff910026',
                   }}
+                  onClick={() => handleLogOut(rLoginResponse)}
                 >
                   Logout
                 </MenuItem>

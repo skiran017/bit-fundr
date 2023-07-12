@@ -10,7 +10,7 @@ import { dcentProviderOptions } from '@rsksmart/rlogin-dcent-provider';
 import Web3 from 'web3';
 import CROWDFUND_ABI from '../abi/crowdfund.json';
 
-import { ethers } from 'ethers';
+import * as ethers from 'ethers';
 
 const rpcUrls = {
   30: 'https://public-node.rsk.co',
@@ -84,18 +84,22 @@ export const StateContextProvider = ({ children }) => {
   //contract
   const [contract, setContract] = useState();
 
-  const provider = new ethers.providers.JsonRpcProvider(
+  // const RPCprovider = new JsonRpcProvider(
+  //   'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
+  // );
+  const RPCprovider = new ethers.JsonRpcProvider(
     'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
   );
 
   // Use the rLogin instance to connect to the provider
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    // const signer = provider.getSigner();
+
     rLogin
       .connect()
       .then(response => {
         // set a local variable for the response:
         const provider = response.provider;
-
         setConnectResponse('Connected');
 
         // Use ethQuery to get the user's account and the chainId
@@ -152,6 +156,8 @@ export const StateContextProvider = ({ children }) => {
       .then(response => setSignDataResponse(response))
       .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
   };
+  console.log({ account });
+  console.log({ rLoginResponse });
 
   // Sign data WEB3
   const handleSignDataWEB3 = async value => {
@@ -209,24 +215,25 @@ export const StateContextProvider = ({ children }) => {
   };
 
   // Send transaction
-  const handleSendTransactionEthers = (to, value) => {
-    setSendResponse('loading...');
-    if (rLoginResponse !== null) {
-      const provider = new ethers.providers.Web3Provider(
-        rLoginResponse.provider
-      );
-      const signer = provider.getSigner();
-      setSendResponse('Please check your wallet');
-      signer
-        .sendTransaction({ to: to.toLowerCase(), value: parseInt(value) })
-        .then(response => setSendResponse(response.hash))
-        .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
-    }
-  };
+  // const handleSendTransactionEthers = (to, value) => {
+  //   setSendResponse('loading...');
+  //   if (rLoginResponse !== null) {
+  //     const provider = new ethers.providers.Web3Provider(
+  //       rLoginResponse.provider
+  //     );
+  //     const signer = provider.getSigner();
+  //     setSendResponse('Please check your wallet');
+  //     signer
+  //       .sendTransaction({ to: to.toLowerCase(), value: parseInt(value) })
+  //       .then(response => setSendResponse(response.hash))
+  //       .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
+  //   }
+  // };
 
   // handle logging out
   const handleLogOut = response => {
     // remove EIP 1193 listeners that were set above
+
     response.provider.removeAllListeners &&
       response.provider.removeAllListeners();
 
@@ -238,13 +245,18 @@ export const StateContextProvider = ({ children }) => {
     // const provider = new ethers.providers.Web3Provider(
     //   'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
     // );
+    // 0x0302829c2288D7Db1940c0116B2adE6d89cf35d4
+    // if (rLoginResponse !== null) {
+    // const provider = new ethers.BrowserProvider(rLoginResponse.provider);
 
     const contract = new ethers.Contract(
-      '0x0302829c2288D7db1940c0116B2ADE6d89cf35d4'.toLowerCase(),
+      '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
+      // '0x0302829c2288D7db1940c0116B2ADE6d89cf35d4'.toLowerCase(),
       CROWDFUND_ABI,
-      provider
+      RPCprovider.provider
     );
     return contract;
+    // }
   };
 
   const fetchContract = async () => {
@@ -256,6 +268,43 @@ export const StateContextProvider = ({ children }) => {
     fetchContract();
   }, [account]);
 
+  const publishCampaign = async form => {
+    if (rLoginResponse !== null) {
+      const provider = new ethers.BrowserProvider(rLoginResponse.provider);
+      const signer = await provider.getSigner();
+      const ctr = new ethers.Contract(
+        '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
+        CROWDFUND_ABI,
+        provider
+      );
+      const formData = {
+        owner: account, // owner
+        title: form.title, // title
+        description: form.description, // description
+        target: form.target,
+        deadline: new Date(form.deadline).getTime(), // deadline,
+        image: form.image,
+      };
+      console.log([{ formData }]);
+
+      try {
+        let transaction = await ctr.connect().createCampaign([formData]);
+        // let transaction = await ctr.createCampaign([
+        //   account, // owner
+        //   form.title, // title
+        //   form.description, // description
+        //   form.target,
+        //   new Date(form.deadline).getTime(), // deadline,
+        //   form.image,
+        // ]);
+        await transaction.wait();
+        console.log('contract call success', transaction);
+      } catch (error) {
+        console.log('contract call failure', error);
+      }
+    }
+  };
+
   const getCampaigns = async () => {
     let campaigns, parsedCampaings;
 
@@ -265,11 +314,9 @@ export const StateContextProvider = ({ children }) => {
       owner: campaign.owner,
       title: campaign.title,
       description: campaign.description,
-      target: ethers.utils.formatEther(campaign.target.toString()),
-      deadline: campaign.deadline.toNumber(),
-      amountCollected: ethers.utils.formatEther(
-        campaign.amountCollected.toString()
-      ),
+      target: ethers.formatEther(campaign.target.toString()),
+      deadline: Number(campaign.deadline),
+      amountCollected: ethers.formatEther(campaign.amountCollected.toString()),
       image: campaign.image,
       pId: i,
     }));
@@ -288,10 +335,27 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const donate = async (pId, amount) => {
-    const data = await contract.donateToCampaign(pId, {
-      value: ethers.utils.parseEther(amount),
-    });
-    return data;
+    // const signer = wallet.signMessage({ pId, amount });
+    // const signer = await RPCprovider.getSigner();
+
+    if (rLoginResponse !== null) {
+      const provider = new ethers.BrowserProvider(rLoginResponse.provider);
+      const signer = await provider.getSigner();
+      const ctr = new ethers.Contract(
+        '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
+        CROWDFUND_ABI,
+        provider
+      );
+      let transaction = await ctr.connect(signer).donateToCampaign(pId, {
+        value: ethers.parseEther(amount),
+      });
+      await transaction.wait();
+    }
+
+    // const data = await contract.donateToCampaign(pId, {
+    //   value: ethers.utils.parseEther(amount),
+    // });
+    // return data;
   };
 
   const getDonations = async pId => {
@@ -303,12 +367,14 @@ export const StateContextProvider = ({ children }) => {
     for (let i = 0; i < numberOfDonations; i++) {
       parsedDonations.push({
         donator: donations[0][i],
-        donation: ethers.utils.formatEther(donations[1][i].toString()),
+        donation: ethers.formatEther(donations[1][i].toString()),
       });
     }
 
     return parsedDonations;
   };
+
+  console.log({ contract });
 
   return (
     <StateContext.Provider
@@ -320,7 +386,7 @@ export const StateContextProvider = ({ children }) => {
         handleLogin,
         handleLogOut,
         contract,
-        // createCampaign: publishCampaign,
+        publishCampaign,
         getCampaigns,
         getUserCampaigns,
         donate,
