@@ -159,31 +159,6 @@ export const StateContextProvider = ({ children }) => {
   console.log({ account });
   console.log({ rLoginResponse });
 
-  // Sign data WEB3
-  const handleSignDataWEB3 = async value => {
-    if (rLoginResponse !== null) {
-      const web3 = new Web3(rLoginResponse.provider);
-      const fromAddress = (await web3.eth.getAccounts())[0];
-      const signedMessage = await web3.eth.personal
-        .sign(value, fromAddress)
-        .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
-      setSignDataResponse(signedMessage);
-    }
-  };
-
-  // Sign data Ethers
-  // const handleSignDataEthers = async value => {
-  //   if (rLoginResponse !== null) {
-  //     const provider = new ethers.providers.Web3Provider(
-  //       rLoginResponse.provider
-  //     );
-  //     const signer = provider.getSigner();
-  //     const signedMessage = await signer
-  //       .signMessage(value)
-  //       .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
-  //     setSignDataResponse(signedMessage);
-  //   }
-  // };
 
   // Send transaction
   const handleSendTransaction = (to, value) => {
@@ -269,26 +244,27 @@ export const StateContextProvider = ({ children }) => {
   }, [account]);
 
   const publishCampaign = async form => {
+    const formData = {
+      owner: account, // owner
+      title: form.title, // title
+      description: form.description, // description
+      target: form.target,
+      deadline: new Date(form.deadline).getTime(), // deadline,
+      image: form.image,
+    };
+    
     if (rLoginResponse !== null) {
-      const provider = new ethers.BrowserProvider(rLoginResponse.provider);
-      const signer = await provider.getSigner();
-      const ctr = new ethers.Contract(
-        '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
-        CROWDFUND_ABI,
-        provider
-      );
-      const formData = {
-        owner: account, // owner
-        title: form.title, // title
-        description: form.description, // description
-        target: form.target,
-        deadline: new Date(form.deadline).getTime(), // deadline,
-        image: form.image,
-      };
-      console.log([{ formData }]);
-
       try {
-        let transaction = await ctr.connect().createCampaign([formData]);
+        const provider = new ethers.BrowserProvider(rLoginResponse.provider);
+        const signer = await provider.getSigner();
+        const ctr = new ethers.Contract(
+          '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
+          CROWDFUND_ABI,
+          provider
+        );
+        
+        const values = Object.values(formData);
+        let transaction = await ctr.connect(signer).createCampaign(...values);
         // let transaction = await ctr.createCampaign([
         //   account, // owner
         //   form.title, // title
@@ -297,6 +273,7 @@ export const StateContextProvider = ({ children }) => {
         //   new Date(form.deadline).getTime(), // deadline,
         //   form.image,
         // ]);
+        console.log({ transaction });
         await transaction.wait();
         console.log('contract call success', transaction);
       } catch (error) {

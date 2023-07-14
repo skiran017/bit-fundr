@@ -34,8 +34,6 @@ function CampaignDetails() {
     setDonators(data);
   };
 
-  console.log({ donators });
-
   // const fetchUserCampaigns = async () => {
   //   setIsLoading(true);
   //   const data = await getUserCampaigns();
@@ -51,12 +49,14 @@ function CampaignDetails() {
   }, [contract, account]);
 
   const handleDonate = async () => {
-    setIsLoading(true);
-
-    await donate(state.pId, amount);
-
-    navigate('/');
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await donate(state.pId, amount);
+      navigate('/');
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

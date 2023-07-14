@@ -11,7 +11,7 @@ import SidebarContent from './components/SidebarContent';
 function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box bg={useColorModeValue('gray.100', 'gray.900')} height="full">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}

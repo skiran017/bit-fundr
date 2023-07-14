@@ -68,7 +68,7 @@ function CreateCampaign() {
           display="flex"
           flexDirection="column"
           w="full"
-          mt="32px"
+          // mt="32px"
           gap="30px"
         >
           <Flex flexWrap="wrap" gap={{ base: '20px', md: '40px' }}>
