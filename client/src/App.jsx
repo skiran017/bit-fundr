@@ -3,7 +3,7 @@ import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { theme } from './utils/theme';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import { About, Explore, Home, CampaignDetails, NewsLetter } from './pages';
+import { About, Explore, Home } from './pages';
 import { Route, Routes, useHref } from 'react-router-dom';
 import Layout from './components/Layout';
 import { useStateContext } from './context';
@@ -43,7 +43,6 @@ function App() {
             Please connect you Wallet to continue
           </Flex>
         )}
-      {/* <Footer /> */}
     </ChakraProvider>
   );
 }
