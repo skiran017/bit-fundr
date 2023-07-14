@@ -34,11 +34,12 @@ function AmountCard({
       // }}
       boxShadow="brand.custom"
       mb="10px"
+      w="440px"
     >
       <Image
         src={image}
         alt="fund-card"
-        height="158px"
+        height="200px"
         width="full"
         objectFit="cover"
         rounded="14px"
@@ -66,7 +67,14 @@ function AmountCard({
           >
             {title}
           </chakra.h3>
-          <chakra.p mt="4px" textAlign="left" lineHeight="26px">
+          <chakra.p
+            mt="4px"
+            textAlign="left"
+            lineHeight="26px"
+            height="200px"
+            overflowY="scroll"
+            wordBreak="break-word"
+          >
             {description}
           </chakra.p>
         </Box>
@@ -84,7 +92,7 @@ function AmountCard({
           <Flex direction="column">
             <chakra.h4>{remainingDays}</chakra.h4>
             <chakra.p mt="4px" fontSize="12px">
-              Days Left
+              Day(s) Left
             </chakra.p>
           </Flex>
         </Flex>

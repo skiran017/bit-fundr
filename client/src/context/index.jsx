@@ -7,7 +7,6 @@ import Torus from '@toruslabs/torus-embed';
 import { trezorProviderOptions } from '@rsksmart/rlogin-trezor-provider';
 import { ledgerProviderOptions } from '@rsksmart/rlogin-ledger-provider';
 import { dcentProviderOptions } from '@rsksmart/rlogin-dcent-provider';
-import Web3 from 'web3';
 import CROWDFUND_ABI from '../abi/crowdfund.json';
 
 import * as ethers from 'ethers';
@@ -68,33 +67,15 @@ export const StateContextProvider = ({ children }) => {
   const [chainId, setChainId] = useState(null);
   const [connectResponse, setConnectResponse] = useState(null);
 
-  // signing data:
-  const [signDataInput, setSignDataInput] = useState('hello world!');
-  const [signDataResponse, setSignDataResponse] = useState(null);
-
-  // sending transactions:
-  const [sendToInput, setSendToInput] = useState('');
-  const [sendAmount, setSendAmount] = useState('100000');
-  const [sendResponse, setSendResponse] = useState(null);
-
-  // sign typed data:
-  const [signTypedDataInput, setSignTypedDataInput] = useState('');
-  const [signTypedDataResponse, setSignTypedDataResponse] = useState(null);
-
   //contract
   const [contract, setContract] = useState();
 
-  // const RPCprovider = new JsonRpcProvider(
-  //   'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
-  // );
   const RPCprovider = new ethers.JsonRpcProvider(
-    'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
+    `https://rsk.getblock.io/${process.env.REACT_APP_GET_BLOCK_KEY}/testnet/`
   );
 
   // Use the rLogin instance to connect to the provider
   const handleLogin = async () => {
-    // const signer = provider.getSigner();
-
     rLogin
       .connect()
       .then(response => {
@@ -128,108 +109,6 @@ export const StateContextProvider = ({ children }) => {
     // .catch(err => err && err.message && setConnectResponse(`[ERROR]: ${err.message}`))
   };
 
-  // Handle the requests to the provider
-  const providerRPC = (provider, args) => provider.request(args);
-
-  // Sign typed data
-  // const handleSignTypedData = value => {
-  //   setSignTypedDataResponse('loading...');
-  //   msgParams.message.contents = value;
-
-  //   providerRPC(rLoginResponse.provider, {
-  //     method: 'eth_signTypedData_v4',
-  //     params: [account, JSON.stringify(msgParams)],
-  //     from: account,
-  //   })
-  //     .then(response => setSignTypedDataResponse(response))
-  //     .catch(error => setSignTypedDataResponse(`[ERROR]: ${error.message}`));
-  // };
-
-  // Sign data
-  const handleSignData = value => {
-    setSignDataResponse('loading...');
-
-    providerRPC(rLoginResponse.provider, {
-      method: 'personal_sign',
-      params: [value, account],
-    })
-      .then(response => setSignDataResponse(response))
-      .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
-  };
-  console.log({ account });
-  console.log({ rLoginResponse });
-
-  // Sign data WEB3
-  const handleSignDataWEB3 = async value => {
-    if (rLoginResponse !== null) {
-      const web3 = new Web3(rLoginResponse.provider);
-      const fromAddress = (await web3.eth.getAccounts())[0];
-      const signedMessage = await web3.eth.personal
-        .sign(value, fromAddress)
-        .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
-      setSignDataResponse(signedMessage);
-    }
-  };
-
-  // Sign data Ethers
-  // const handleSignDataEthers = async value => {
-  //   if (rLoginResponse !== null) {
-  //     const provider = new ethers.providers.Web3Provider(
-  //       rLoginResponse.provider
-  //     );
-  //     const signer = provider.getSigner();
-  //     const signedMessage = await signer
-  //       .signMessage(value)
-  //       .catch(error => setSignDataResponse(`[ERROR]: ${error.message}`));
-  //     setSignDataResponse(signedMessage);
-  //   }
-  // };
-
-  // Send transaction
-  const handleSendTransaction = (to, value) => {
-    setSendResponse('loading...');
-
-    providerRPC(rLoginResponse.provider, {
-      method: 'eth_sendTransaction',
-      params: [{ from: account, to, value }],
-    })
-      .then(response => setSendResponse(response))
-      .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
-  };
-
-  // Send transaction
-  const handleSendTransactionWEB3 = async (to, value) => {
-    setSendResponse('loading...');
-    if (rLoginResponse !== null) {
-      const web3 = new Web3(rLoginResponse.provider);
-      const fromAddress = (await web3.eth.getAccounts())[0];
-      web3.eth
-        .sendTransaction({
-          from: fromAddress.toLowerCase(),
-          to: to.toLowerCase(),
-          value: value,
-        })
-        .then(response => setSendResponse(response))
-        .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
-    }
-  };
-
-  // Send transaction
-  // const handleSendTransactionEthers = (to, value) => {
-  //   setSendResponse('loading...');
-  //   if (rLoginResponse !== null) {
-  //     const provider = new ethers.providers.Web3Provider(
-  //       rLoginResponse.provider
-  //     );
-  //     const signer = provider.getSigner();
-  //     setSendResponse('Please check your wallet');
-  //     signer
-  //       .sendTransaction({ to: to.toLowerCase(), value: parseInt(value) })
-  //       .then(response => setSendResponse(response.hash))
-  //       .catch(error => setSendResponse(`[ERROR]: ${error.message}`));
-  //   }
-  // };
-
   // handle logging out
   const handleLogOut = response => {
     // remove EIP 1193 listeners that were set above
@@ -242,21 +121,12 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const getContract = async () => {
-    // const provider = new ethers.providers.Web3Provider(
-    //   'https://rsk.getblock.io/9d2ccce6-7b80-4ac1-a75d-d4bfce568eb7/testnet/'
-    // );
-    // 0x0302829c2288D7Db1940c0116B2adE6d89cf35d4
-    // if (rLoginResponse !== null) {
-    // const provider = new ethers.BrowserProvider(rLoginResponse.provider);
-
     const contract = new ethers.Contract(
       '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
-      // '0x0302829c2288D7db1940c0116B2ADE6d89cf35d4'.toLowerCase(),
       CROWDFUND_ABI,
       RPCprovider.provider
     );
     return contract;
-    // }
   };
 
   const fetchContract = async () => {
@@ -269,34 +139,26 @@ export const StateContextProvider = ({ children }) => {
   }, [account]);
 
   const publishCampaign = async form => {
-    if (rLoginResponse !== null) {
-      const provider = new ethers.BrowserProvider(rLoginResponse.provider);
-      const signer = await provider.getSigner();
-      const ctr = new ethers.Contract(
-        '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
-        CROWDFUND_ABI,
-        provider
-      );
-      const formData = {
-        owner: account, // owner
-        title: form.title, // title
-        description: form.description, // description
-        target: form.target,
-        deadline: new Date(form.deadline).getTime(), // deadline,
-        image: form.image,
-      };
-      console.log([{ formData }]);
+    const formData = {
+      owner: account, // owner
+      title: form.title, // title
+      description: form.description, // description
+      target: form.target,
+      deadline: new Date(form.deadline).getTime(), // deadline,
+      image: form.image,
+    };
 
+    if (rLoginResponse !== null) {
       try {
-        let transaction = await ctr.connect().createCampaign([formData]);
-        // let transaction = await ctr.createCampaign([
-        //   account, // owner
-        //   form.title, // title
-        //   form.description, // description
-        //   form.target,
-        //   new Date(form.deadline).getTime(), // deadline,
-        //   form.image,
-        // ]);
+        const provider = new ethers.BrowserProvider(rLoginResponse.provider);
+        const signer = await provider.getSigner();
+        
+        const values = Object.values(formData);
+        let transaction = await contract
+          .connect(signer)
+          .createCampaign(...values);
+
+        console.log({ transaction });
         await transaction.wait();
         console.log('contract call success', transaction);
       } catch (error) {
@@ -335,27 +197,15 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const donate = async (pId, amount) => {
-    // const signer = wallet.signMessage({ pId, amount });
-    // const signer = await RPCprovider.getSigner();
-
     if (rLoginResponse !== null) {
       const provider = new ethers.BrowserProvider(rLoginResponse.provider);
       const signer = await provider.getSigner();
-      const ctr = new ethers.Contract(
-        '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
-        CROWDFUND_ABI,
-        provider
-      );
-      let transaction = await ctr.connect(signer).donateToCampaign(pId, {
+     
+      let transaction = await contract.connect(signer).donateToCampaign(pId, {
         value: ethers.parseEther(amount),
       });
       await transaction.wait();
     }
-
-    // const data = await contract.donateToCampaign(pId, {
-    //   value: ethers.utils.parseEther(amount),
-    // });
-    // return data;
   };
 
   const getDonations = async pId => {

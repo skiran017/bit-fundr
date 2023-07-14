@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <StrictMode>
-    <StateContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <StateContextProvider>
         <ColorModeScript />
         <App />
-      </BrowserRouter>
-    </StateContextProvider>
+      </StateContextProvider>
+    </BrowserRouter>
   </StrictMode>
 );
 

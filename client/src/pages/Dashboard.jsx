@@ -19,7 +19,7 @@ function Dashboard() {
     if (contract) fetchUserCampaigns();
   }, [account, contract]);
 
-  console.log({ userCampaigns });
+  
 
   return (
     <Box p="6px" w="100%">

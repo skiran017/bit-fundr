@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, useBreakpointValue } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useStateContext } from '../context';
 import DisplayCampaigns from '../components/DisplayCampaigns/DisplayCampaigns';
 
@@ -21,7 +21,7 @@ function Explore() {
   }, [account, contract]);
 
   return (
-    <Box p="68px 12px 6px 12px" height={{ base: '100%', md: '80vh' }}>
+    <Box p="68px 12px 6px 12px">
       <DisplayCampaigns
         title="All Campaigns"
         isLoading={isLoading}
