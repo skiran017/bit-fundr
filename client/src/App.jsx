@@ -22,23 +22,27 @@ function App() {
       </Routes>
 
       {account &&
-      href !== '/' &&
-      href !== '/about' &&
-      href !== '/all-campaigns' ? (
-        <>
-          <Layout />
-        </>
-      ) : (
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          pt="66px"
-          h="90vh"
-          fontSize="20px"
-        >
-          Please connect you Wallet to continue
-        </Flex>
-      )}
+        href !== '/' &&
+        href !== '/about' &&
+        href !== '/all-campaigns' && (
+          <>
+            <Layout />
+          </>
+        )}
+      {!account &&
+        href !== '/' &&
+        href !== '/about' &&
+        href !== '/all-campaigns' && (
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            pt="66px"
+            h="90vh"
+            fontSize="20px"
+          >
+            Please connect you Wallet to continue
+          </Flex>
+        )}
       {/* <Footer /> */}
     </ChakraProvider>
   );
