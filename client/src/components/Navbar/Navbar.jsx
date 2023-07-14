@@ -146,7 +146,10 @@ export default function Navbar() {
                   _hover={{
                     bg: '#ff910026',
                   }}
-                  onClick={() => handleLogOut(rLoginResponse)}
+                  onClick={() => {
+                    handleLogOut(rLoginResponse);
+                    window.location.replace('/');
+                  }}
                 >
                   Logout
                 </MenuItem>

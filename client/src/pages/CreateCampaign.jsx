@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Flex,
-  Box,
-  chakra,
-  FormControl,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Flex, Box, chakra, useColorModeValue } from '@chakra-ui/react';
 import * as ethers from 'ethers';
 import CustomButton from '../components/CustomButton/CustomButton';
 import FormField from '../components/FormField/FormField';
 import { checkIfImage } from '../utils/helpers';
 import { useStateContext } from '../context';
-import { FaDollarSign } from 'react-icons/fa';
 import { Spinner } from '@chakra-ui/react';
 function CreateCampaign() {
   const navigate = useNavigate();
@@ -43,7 +36,7 @@ function CreateCampaign() {
           target: ethers.parseUnits(form.target, 18),
         });
         setIsLoading(false);
-        // navigate('/dashboard');
+        navigate('/dashboard');
       } else {
         alert('Provide valid image URL');
         setForm({ ...form, image: '' });
