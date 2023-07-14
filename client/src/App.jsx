@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { theme } from './utils/theme';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -29,14 +29,15 @@ function App() {
           <Layout />
         </>
       ) : (
-        <>
-          {/* <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<Explore />} />
-          </Routes>
-           */}
-        </>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          pt="66px"
+          h="90vh"
+          fontSize="20px"
+        >
+          Please connect you Wallet to continue
+        </Flex>
       )}
       {/* <Footer /> */}
     </ChakraProvider>

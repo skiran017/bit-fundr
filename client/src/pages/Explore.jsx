@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, useBreakpointValue } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useStateContext } from '../context';
 import DisplayCampaigns from '../components/DisplayCampaigns/DisplayCampaigns';
 
