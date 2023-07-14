@@ -42,7 +42,7 @@ export default function Navbar() {
         color={useColorModeValue('gray.600', 'white')}
         minH={'66px'}
         py={{ base: 2 }}
-        px={{ base: 4 }}
+        px={{ base: 4, md: 20 }}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -72,6 +72,8 @@ export default function Navbar() {
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
+            fontSize="18px"
+            fontWeight="semibold"
           >
             Bit Fundr
           </Text>
@@ -139,17 +141,7 @@ export default function Navbar() {
                   _hover={{
                     bg: '#ff910026',
                   }}
-                >
-                  Account Settings
-                </MenuItem>
-                <MenuItem
-                  _hover={{
-                    bg: '#ff910026',
-                  }}
-                  onClick={() => {
-                    handleLogOut(rLoginResponse);
-                    window.location.replace('/');
-                  }}
+                  onClick={() => handleLogOut(rLoginResponse)}
                 >
                   Logout
                 </MenuItem>

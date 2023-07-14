@@ -6,10 +6,10 @@ export const NAV_ITEMS = [
     label: 'Home',
     href: '/',
   },
-  {
-    label: 'About Us',
-    href: '/about',
-  },
+  // {
+  //   label: 'About Us',
+  //   href: '/about',
+  // },
   {
     label: 'Explore',
     href: '/all-campaigns',
