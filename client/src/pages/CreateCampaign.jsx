@@ -52,7 +52,7 @@ function CreateCampaign() {
         direction="column"
         rounded="10px"
         p={{ base: '10', md: '4' }}
-        h={'full'}
+        h={'92vh'}
       >
         {isLoading && <Spinner />}
 

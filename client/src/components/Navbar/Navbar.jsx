@@ -40,12 +40,12 @@ export default function Navbar() {
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'66px'}
+        minH={'80px'}
         py={{ base: 2 }}
         px={{ base: 4, md: 20 }}
         borderBottom={1}
         borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.900')}
+        borderColor={useColorModeValue('gray.200', 'gray.600')}
         align={'center'}
         as="nav"
         position="fixed"
@@ -73,7 +73,7 @@ export default function Navbar() {
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
             fontSize="18px"
-            fontWeight="semibold"
+            fontWeight="bold"
           >
             Bit Fundr
           </Text>

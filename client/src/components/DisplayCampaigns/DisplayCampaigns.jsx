@@ -18,7 +18,17 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
       </chakra.h1>
 
       <Flex flexWrap="wrap" mt="20px" gap="26px">
-        {isLoading && <Spinner />}
+        {isLoading && (
+          <Flex alignItems="center" justifyContent="center" w="full" h="60vh">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="brand.custom"
+              size="xl"
+            />
+          </Flex>
+        )}
         {!isLoading && campaigns.length === 0 && (
           <chakra.p fontSize="14px" fontWeight="semibold">
             No campaigns created

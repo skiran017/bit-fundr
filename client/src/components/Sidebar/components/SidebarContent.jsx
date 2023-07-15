@@ -20,7 +20,8 @@ function SidebarContent({ onClose, ...rest }) {
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      h="94vh"
+      h="92vh"
+      mt="6px"
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
