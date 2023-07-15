@@ -43,22 +43,25 @@ export default function Carousel() {
   // This can be static or loaded from a server
   const cards = [
     {
-      title: 'Design Projects 1',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title:
+        'Welcome to BitFundr  Empowering Innovation on the Bitcoin Network',
+      text: 'Unlock the power of Bitcoin crowdfunding with BitFundr - the innovative platform where project creators and backers come together to fuel innovation and shape the future of the Bitcoin ecosystem.',
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://img.freepik.com/free-vector/cryptocurrency-bitcoin-golden-coin-with-digital-circuit-lines-background_1017-33592.jpg?size=626&ext=jpg',
+      color: 'white',
     },
     {
-      title: 'Design Projects 2',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Join the Bitcoin Crowdfunding Revolution',
+      text: 'Embrace the power of the Bitcoin community and be a catalyst for innovation on BitFundr. Join our platform to support groundbreaking projects, harness the benefits of the Rootstock blockchain, and make a meaningful impact within the Bitcoin ecosystem.',
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        'https://img.freepik.com/free-photo/men-exchanging-bitcoin-with-copy-space_23-2148793793.jpg?w=1380&t=st=1689424707~exp=1689425307~hmac=96a9284c242d3243a61e6e053dd4c9cf34892690f1b741eada56a6c2dccdf3e8',
+      color: 'black',
     },
     {
-      title: 'Design Projects 3',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Discover Inspiring Projects and Make an Impact',
+      text: 'Explore a world of transformative projects on BitFundr, where game-changing ideas become reality. Back visionary entrepreneurs, participate in the growth of the Bitcoin ecosystem, and unlock exciting rewards as you contribute to the success of innovative ventures.',
       image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://github.com/skiran017/dex/assets/23178403/7a4a0063-2b3b-4ce8-841f-c14fa955cb5a',
     },
   ];
 
@@ -108,8 +111,16 @@ export default function Carousel() {
             backgroundSize="cover"
             backgroundImage={`url(${card.image})`}
           >
+            <Box
+              position={'absolute'}
+              w={'100%'}
+              h={'100%'}
+              top={0}
+              left={0}
+              bg={'rgb(0,0,0,0.6)'}
+            />
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="600px" position="relative">
+            <Container height="600px" position="relative">
               <Stack
                 spacing={6}
                 w={'full'}
@@ -120,11 +131,15 @@ export default function Carousel() {
               >
                 <Heading
                   fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
-                  color={text}
+                  color={'orange'}
                 >
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="gray.600">
+                <Text
+                  fontSize={{ base: 'md', md: 'lg', lg: 'lg' }}
+                  color={'white'}
+                  w="full"
+                >
                   {card.text}
                 </Text>
               </Stack>
