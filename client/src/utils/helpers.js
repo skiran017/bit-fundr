@@ -20,3 +20,15 @@ export const checkIfImage = (url, callback) => {
   img.onload = () => callback(true);
   img.onerror = () => callback(false);
 };
+
+// Date object
+const date = new Date();
+
+let currentDay = String(date.getDate()).padStart(2, '0');
+
+let currentMonth = String(date.getMonth() + 1).padStart(2, '0');
+
+let currentYear = date.getFullYear();
+
+// Display the date as yyyy-MM-DD
+export let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;

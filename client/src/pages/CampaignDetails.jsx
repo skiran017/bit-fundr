@@ -9,6 +9,7 @@ import {
   useColorModeValue,
   Input,
   Avatar,
+  Text,
 } from '@chakra-ui/react';
 import { useStateContext } from '../context';
 import CounterBox from '../components/CounterBox/CounterBox';
@@ -59,6 +60,8 @@ function CampaignDetails() {
     }
   };
 
+  console.log({ remainingDays });
+
   return (
     <Box w={'full'} p="28px">
       {isLoading && <Spinner size="lg" />}
@@ -90,6 +93,16 @@ function CampaignDetails() {
                 maxWidth: '100%',
               }}
             ></Box>
+            {+remainingDays < 0 ? (
+              <Box
+                mt="12px"
+                color="red"
+                fontStyle="italic"
+                fontWeight="semibold"
+              >
+                **This Campaign has expired.
+              </Box>
+            ) : null}
           </Box>
         </Flex>
 
@@ -99,7 +112,10 @@ function CampaignDetails() {
           justifyContent="space-between"
           gap="30px"
         >
-          <CounterBox title="Days Left" value={remainingDays} />
+          <CounterBox
+            title="Days Left"
+            value={+remainingDays > 0 ? remainingDays : 'Expired'}
+          />
           <CounterBox
             title={`Raised of ${state.target}`}
             value={state.amountCollected}
@@ -286,6 +302,7 @@ function CampaignDetails() {
                 title="Fund Campaign"
                 handleClick={handleDonate}
                 w="full"
+                isDisabled={+amount <= 0 || +remainingDays < 0}
               />
             </Box>
           </Flex>

@@ -12,7 +12,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
   };
 
   return (
-    <Box>
+    <Box pb="16px">
       <chakra.h1 fontSize="18px" fontWeight="semibold" mb="26px">
         {title} {campaigns.length}
       </chakra.h1>

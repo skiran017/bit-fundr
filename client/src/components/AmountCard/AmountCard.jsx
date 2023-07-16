@@ -90,7 +90,15 @@ function AmountCard({
           </Flex>
 
           <Flex direction="column">
-            <chakra.h4>{remainingDays}</chakra.h4>
+            <chakra.h4>
+              {+remainingDays > 0 ? (
+                remainingDays
+              ) : (
+                <chakra.p color="red" fontWeight="semibold" fontStyle="italic">
+                  Expired
+                </chakra.p>
+              )}
+            </chakra.h4>
             <chakra.p mt="4px" fontSize="12px">
               Day(s) Left
             </chakra.p>

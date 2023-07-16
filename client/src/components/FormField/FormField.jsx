@@ -14,6 +14,7 @@ function FormField({
   isTextArea,
   value,
   handleChange,
+  ...props
 }) {
   return (
     <FormLabel display="flex" w="full" flexDirection="column" flex={1}>
@@ -71,6 +72,7 @@ function FormField({
           _focusVisible={{
             border: 'brand.custom',
           }}
+          {...props}
         />
       )}
     </FormLabel>

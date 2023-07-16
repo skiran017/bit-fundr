@@ -141,7 +141,12 @@ export default function Navbar() {
                   _hover={{
                     bg: '#ff910026',
                   }}
-                  onClick={() => handleLogOut(rLoginResponse)}
+                  onClick={() => {
+                    handleLogOut(rLoginResponse);
+                    // localStorage.removeItem('WEB3_CONNECT_CACHED_PROVIDER');
+                    // eslint-disable-next-line no-restricted-globals
+                    location.reload();
+                  }}
                 >
                   Logout
                 </MenuItem>
