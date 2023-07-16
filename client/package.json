@@ -2,6 +2,7 @@
   "name": "bit-fundr",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
@@ -17,6 +18,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@toruslabs/torus-embed": "^2.2.5",
     "@walletconnect/web3-provider": "^1.8.0",
+    "arweave": "^1.14.0",
     "ethers": "^6.6.2",
     "ethjs-query": "^0.3.8",
     "framer-motion": "4.1.17",
@@ -33,7 +35,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "bundlr upload-dir ./build -h https://node2.bundlr.network --wallet ./wallet.json -c arweave --index-file index.html --no-confirmation"
   },
   "eslintConfig": {
     "extends": "react-app"

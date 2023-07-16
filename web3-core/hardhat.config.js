@@ -17,10 +17,10 @@ module.exports = {
     version: '0.8.10',
 
     networks: {
-      // rsk: {
-      //   url: `https://rsk.getblock.io/${process.env.GETBLOCK_KEY}/testnet/`,
-      //   accounts: [`0x${process.env.PRIVATE_KEY}`],
-      // },
+      rsk: {
+        url: `https://rsk.getblock.io/${process.env.GETBLOCK_KEY}/testnet/`,
+        accounts: [`0x${process.env.PRIVATE_KEY}`],
+      },
       localhost: {},
     },
   },
