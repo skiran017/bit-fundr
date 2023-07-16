@@ -17,7 +17,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
         {title} {campaigns.length}
       </chakra.h1>
 
-      <Flex flexWrap="wrap" mt="20px" gap="26px">
+      <Flex flexWrap="wrap" mt="20px" gap={12}>
         {isLoading && (
           <Flex alignItems="center" justifyContent="center" w="full" h="60vh">
             <Spinner
