@@ -1,5 +1,6 @@
 import React from 'react';
 import { Stack, Flex, Text, Link, useColorModeValue } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import { NAV_ITEMS } from '../../../utils/constants';
 
@@ -8,22 +9,25 @@ const MobileNav = () => {
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
+      pt="82px"
       display={{ md: 'none' }}
     >
       {NAV_ITEMS.map(navItem => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem key={navItem.label} href={navItem.href} {...navItem} />
       ))}
     </Stack>
   );
 };
 
 const MobileNavItem = ({ label, href }) => {
+  const navigate = useNavigate();
+
   return (
     <Stack spacing={4}>
       <Flex
         py={2}
         as={Link}
-        href={href ?? '#'}
+        onClick={() => navigate(href)}
         justify={'space-between'}
         align={'center'}
         _hover={{

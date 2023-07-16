@@ -31,4 +31,4 @@ let currentMonth = String(date.getMonth() + 1).padStart(2, '0');
 let currentYear = date.getFullYear();
 
 // Display the date as yyyy-MM-DD
-export let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+export let currentDate = `${currentYear}-${currentMonth}-${+currentDay + 1}`;

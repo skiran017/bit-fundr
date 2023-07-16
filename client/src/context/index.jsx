@@ -120,6 +120,10 @@ export const StateContextProvider = ({ children }) => {
     response.disconnect();
   };
 
+  /**
+   * Returns the contract
+   * @returns contract
+   */
   const getContract = async () => {
     const contract = new ethers.Contract(
       process.env.REACT_APP_CONTRACT_ADDRESS,
@@ -138,6 +142,11 @@ export const StateContextProvider = ({ children }) => {
     fetchContract();
   }, [account]);
 
+  /**
+   * Returns the transcation after publishing campaign
+   * @param form input from the form
+   * @returns transaction
+   */
   const publishCampaign = async form => {
     const formData = {
       owner: account, // owner
@@ -167,10 +176,16 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Returns all exisiting campaigns
+   * @returns parsed campaigns data
+   */
   const getCampaigns = async () => {
     let campaigns, parsedCampaings;
 
     campaigns = await contract.getCampaigns();
+
+    console.log('raw', campaigns);
 
     parsedCampaings = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
@@ -181,11 +196,18 @@ export const StateContextProvider = ({ children }) => {
       amountCollected: ethers.formatEther(campaign.amountCollected.toString()),
       image: campaign.image,
       pId: i,
+      isActive: campaign.isActive,
+      isCompleted: campaign.isCompleted,
+      isExpired: campaign.isExpired,
     }));
 
     return parsedCampaings;
   };
 
+  /**
+   * Returns filtered user campaigns based on account address
+   * @returns user created campaigns
+   */
   const getUserCampaigns = async () => {
     const allCampaigns = await getCampaigns();
 
@@ -196,6 +218,12 @@ export const StateContextProvider = ({ children }) => {
     return filteredCampaigns;
   };
 
+  /**
+   * Returns transaction after successful donation
+   * @param pId campaign Id
+   * @param amount The amount to donate
+   * @returns Transaction
+   */
   const donate = async (pId, amount) => {
     if (rLoginResponse !== null) {
       const provider = new ethers.BrowserProvider(rLoginResponse.provider);
@@ -208,6 +236,11 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Returns the donated amount and the donor address
+   * @param pId campaign Id
+   * @returns Donated amount and Donator address
+   */
   const getDonations = async pId => {
     const donations = await contract.getDonators(pId);
     const numberOfDonations = donations[0].length;
