@@ -53,6 +53,11 @@
         "internalType": "bool",
         "name": "isCompleted",
         "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isExpired",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -187,6 +192,11 @@
           {
             "internalType": "bool",
             "name": "isCompleted",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isExpired",
             "type": "bool"
           }
         ],

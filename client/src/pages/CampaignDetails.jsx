@@ -31,7 +31,7 @@ function CampaignDetails() {
   const bgColorValuegray = useColorModeValue('gray.200', 'gray.900');
   const lightGray = useColorModeValue('gray.800', 'gray.500');
   const grayWhite = useColorModeValue('gray.600', 'white');
-  const blackWhite = useColorModeValue('blackAlpha.100', 'whiteAlpha.100');
+  const blackWhite = useColorModeValue('whiteAlpha.900', 'whiteAlpha.200');
   const bgColorValuewhite = useColorModeValue(
     'whiteAlpha.600',
     'blackAlpha.900'
@@ -291,7 +291,7 @@ function CampaignDetails() {
                     bg={blackWhite}
                     border={0}
                     _focus={{
-                      bg: 'white',
+                      bg: blackWhite,
                     }}
                     _focusVisible={{
                       border: 'brand.custom',

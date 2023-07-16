@@ -14,6 +14,7 @@ contract CrowdFunding {
         uint256[] donations;
         bool isActive;
         bool isCompleted;
+        bool isExpired;
     }
 
     mapping(uint256 => Campaign) public campaigns;
@@ -43,6 +44,7 @@ contract CrowdFunding {
         campaign.image = _image;
         campaign.isActive = true;
         campaign.isCompleted = false;
+        campaign.isExpired = false;
 
         numberOfCampaigns++;
 
@@ -56,6 +58,7 @@ contract CrowdFunding {
             !campaigns[_id].isCompleted,
             'Campaign has already been completed.'
         );
+        require(!campaigns[_id].isExpired, 'Campaign has expired.');
 
         uint256 amount = msg.value;
         Campaign storage campaign = campaigns[_id];
@@ -94,6 +97,8 @@ contract CrowdFunding {
 
         if (campaign.amountCollected >= campaign.target) {
             campaign.isCompleted = true;
+        } else if (campaign.deadline < block.timestamp) {
+            campaign.isExpired = true;
         }
         campaign.isActive = false;
     }
@@ -101,8 +106,8 @@ contract CrowdFunding {
     function refundToDonators(uint256 _id) public {
         Campaign storage campaign = campaigns[_id];
         require(
-            !campaign.isCompleted && !campaign.isActive,
-            'Campaign must be closed and incomplete to issue refunds.'
+            !campaign.isCompleted && campaign.isExpired && !campaign.isActive,
+            'Campaign must be closed, expired, and incomplete to issue refunds.'
         );
 
         for (uint256 i = 0; i < campaign.donators.length; i++) {

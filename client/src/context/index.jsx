@@ -172,6 +172,8 @@ export const StateContextProvider = ({ children }) => {
 
     campaigns = await contract.getCampaigns();
 
+    console.log('raw', campaigns);
+
     parsedCampaings = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
       title: campaign.title,
@@ -181,6 +183,9 @@ export const StateContextProvider = ({ children }) => {
       amountCollected: ethers.formatEther(campaign.amountCollected.toString()),
       image: campaign.image,
       pId: i,
+      isActive: campaign.isActive,
+      isCompleted: campaign.isCompleted,
+      isExpired: campaign.isExpired,
     }));
 
     return parsedCampaings;
