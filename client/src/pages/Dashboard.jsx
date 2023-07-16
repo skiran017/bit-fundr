@@ -19,10 +19,8 @@ function Dashboard() {
     if (contract) fetchUserCampaigns();
   }, [account, contract]);
 
-  
-
   return (
-    <Box p="6px" w="100%">
+    <Box p={6} w="100%">
       <DisplayCampaigns
         title="Your Campaigns"
         isLoading={isLoading}

@@ -21,7 +21,7 @@ function NewsLetter() {
       bg={useColorModeValue('gray.50', 'gray.800')}
     >
       <Stack
-        boxShadow='brand.custom'
+        boxShadow="brand.custom"
         bg={useColorModeValue('white', 'gray.700')}
         rounded={'xl'}
         p={10}

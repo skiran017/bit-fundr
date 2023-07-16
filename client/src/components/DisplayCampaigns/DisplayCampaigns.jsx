@@ -12,13 +12,23 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
   };
 
   return (
-    <Box p={4}>
-      <chakra.h1 fontSize="18px" fontWeight="semibold">
+    <Box pb="16px">
+      <chakra.h1 fontSize="18px" fontWeight="semibold" mb="26px">
         {title} {campaigns.length}
       </chakra.h1>
 
-      <Flex flexWrap="wrap" mt="20px" gap="26px">
-        {isLoading && <Spinner />}
+      <Flex flexWrap="wrap" mt="20px" gap={12}>
+        {isLoading && (
+          <Flex alignItems="center" justifyContent="center" w="full" h="60vh">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="brand.custom"
+              size="xl"
+            />
+          </Flex>
+        )}
         {!isLoading && campaigns.length === 0 && (
           <chakra.p fontSize="14px" fontWeight="semibold">
             No campaigns created

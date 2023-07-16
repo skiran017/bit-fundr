@@ -122,7 +122,7 @@ export const StateContextProvider = ({ children }) => {
 
   const getContract = async () => {
     const contract = new ethers.Contract(
-      '0x0302829c2288D7Db1940c0116B2adE6d89cf35d4',
+      process.env.REACT_APP_CONTRACT_ADDRESS,
       CROWDFUND_ABI,
       RPCprovider.provider
     );
@@ -152,7 +152,7 @@ export const StateContextProvider = ({ children }) => {
       try {
         const provider = new ethers.BrowserProvider(rLoginResponse.provider);
         const signer = await provider.getSigner();
-        
+
         const values = Object.values(formData);
         let transaction = await contract
           .connect(signer)
@@ -200,7 +200,7 @@ export const StateContextProvider = ({ children }) => {
     if (rLoginResponse !== null) {
       const provider = new ethers.BrowserProvider(rLoginResponse.provider);
       const signer = await provider.getSigner();
-     
+
       let transaction = await contract.connect(signer).donateToCampaign(pId, {
         value: ethers.parseEther(amount),
       });

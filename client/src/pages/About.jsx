@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 function About() {
   return (
-    <Box p="66px 6px 6px 6px" height="80vh">
+    <Box pt="82px" height="80vh" px={{ base: 4, md: 20 }}>
       About
     </Box>
   );

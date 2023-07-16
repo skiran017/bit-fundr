@@ -21,7 +21,7 @@ function Explore() {
   }, [account, contract]);
 
   return (
-    <Box p="68px 12px 6px 12px">
+    <Box pt="86px" px={{ base: 4, md: 20 }}>
       <DisplayCampaigns
         title="All Campaigns"
         isLoading={isLoading}

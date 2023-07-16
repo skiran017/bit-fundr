@@ -17,8 +17,8 @@ const DesktopNav = () => {
             p={2}
             onClick={() => navigate(navItem.href)}
             // href={navItem.href ?? '#'}
-            fontSize={'sm'}
-            fontWeight={600}
+            fontSize={'16px'}
+            fontWeight={'semibold'}
             color={linkColor}
             _hover={{
               textDecoration: 'none',

@@ -1,20 +1,18 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import Carousel from '../components/Carousel/Carousel';
 
 function Home() {
   return (
-    <Box p="66px 6px 6px 6px" height="80vh">
-      Home Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-      pariatur consectetur deleniti sunt illum neque nemo at officia quis,
-      incidunt nobis. Aperiam a iure necessitatibus rem odit pariatur, ea illo
-      atque impedit id alias, optio quod perspiciatis explicabo ad veritatis
-      tempora hic placeat totam corrupti velit. Animi obcaecati eveniet quod.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime pariatur
-      consectetur deleniti sunt illum neque nemo at officia quis, incidunt
-      nobis. Aperiam a iure necessitatibus rem odit pariatur, ea illo atque
-      impedit id alias, optio quod perspiciatis explicabo ad veritatis tempora
-      hic placeat totam corrupti velit. Animi obcaecati eveniet quod.
-    </Box>
+    <Flex
+      pt="82px"
+      height="90vh"
+      px={{ base: 4, md: 20 }}
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Carousel />
+    </Flex>
   );
 }
 
