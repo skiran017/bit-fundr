@@ -1,7 +1,7 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import App from './App';
 import { StateContextProvider } from './context';
 
@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <StateContextProvider>
         <ColorModeScript />
         <App />
       </StateContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 );
 

@@ -22,17 +22,17 @@ function App() {
       </Routes>
 
       {account &&
-        href !== '/' &&
-        href !== '/about' &&
-        href !== '/all-campaigns' && (
+        href !== '#/' &&
+        href !== '#/about' &&
+        href !== '#/all-campaigns' && (
           <>
             <Layout />
           </>
         )}
       {!account &&
-        href !== '/' &&
-        href !== '/about' &&
-        href !== '/all-campaigns' && (
+        href !== '#/' &&
+        href !== '#/about' &&
+        href !== '#/all-campaigns' && (
           <Flex
             alignItems="center"
             justifyContent="center"
