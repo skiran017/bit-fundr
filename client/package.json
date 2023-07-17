@@ -36,7 +36,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "deploy": "bundlr upload-dir ./build -h https://node2.bundlr.network --wallet ./wallet.json -c arweave --index-file index.html --no-confirmation"
+    "deploy": "bundlr upload-dir ./build -h https://node1.bundlr.network --wallet ./wallet.json -c arweave --index-file index.html --no-confirmation"
   },
   "eslintConfig": {
     "extends": "react-app"

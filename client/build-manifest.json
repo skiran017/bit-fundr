@@ -1,0 +1,17 @@
+{
+"manifest": "arweave/paths",
+"version": "0.1.0",
+"paths": {
+"index.html":{"id":"HFOthwNSBthJ9IhoPv-g-dGtMynA1hOUAHSziUlsdMA"},
+"static/js/main.486f4de2.js.LICENSE.txt":{"id":"8w7eVeQrfwnBrQJ3N45QOJ-s3i7EoVUWUyqOcHnZjuU"},
+"logo512.png":{"id":"cPbU6NiftJkGIkHq5q4-40L_9npd92Z-LOhkBMMaf7A"},
+"asset-manifest.json":{"id":"FtI3lCGSTypoOZsloSU7mjd2KpLwQImEKvhB6-aHs2s"},
+"favicon.ico":{"id":"jh_gQnLVlExSd3c7zaAWzxzVMd-ixMko2KgDN8IBzX8"},
+"robots.txt":{"id":"9wmt9dNQjyf4QJbktaLEI3eNzOaycwKv2DZ4JOHm-do"},
+"manifest.json":{"id":"R1_KjPhUsIZ6D-WQCnoEItlmPVmGqn2YVIMLokZWCnk"},
+"logo192.png":{"id":"aAXA3S-8csLXWCcTHDmzFl1q12qTAcuxTt1cwKxH7jU"},
+"static/js/main.486f4de2.js":{"id":"ayvbY2o4WgFxmCg91lKAGfTY7VXFANQagyOF_9zLZK4"},
+"static/js/main.486f4de2.js.map":{"id":"f20_rO_KYYe8PDESfcl6UvhTPnO5R6l2kSa8ykLpMZM"}
+},
+"index":{"path":"index.html"}
+}
