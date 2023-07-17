@@ -14,22 +14,6 @@ export const NAV_ITEMS = [
     label: 'Explore',
     href: '/all-campaigns',
   },
-  // {
-  //   label: 'Profile',
-  //   href: '/dashboard',
-  // },
-  // {
-  //   name: 'withdraw',
-  //   imgUrl: withdraw,
-  //   link: '/',
-  //   disabled: true,
-  // },
-  // {
-  //   name: 'logout',
-  //   imgUrl: logout,
-  //   link: '/',
-  //   disabled: true,
-  // },
 ];
 
 export const sibeBarLinkItems = [

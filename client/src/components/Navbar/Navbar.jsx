@@ -50,9 +50,6 @@ export default function Navbar() {
         as="nav"
         position="fixed"
         w="100%"
-        // position="sticky"
-        // top={0}
-        // zIndex={20}
       >
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -89,14 +86,6 @@ export default function Navbar() {
           direction={'row'}
           spacing={6}
         >
-          {/* <CustomButton
-            as={'a'}
-            href={'#'}
-            // display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            title={'Sign Up'}
-          /> */}
           {account && (
             <Menu>
               <MenuButton
@@ -145,7 +134,8 @@ export default function Navbar() {
                     handleLogOut(rLoginResponse);
                     // localStorage.removeItem('WEB3_CONNECT_CACHED_PROVIDER');
                     // eslint-disable-next-line no-restricted-globals
-                    location.reload();
+                    location.assign('/');
+                    // location.replace('/');
                   }}
                 >
                   Logout

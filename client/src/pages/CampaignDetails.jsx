@@ -43,16 +43,8 @@ function CampaignDetails() {
     setDonators(data);
   };
 
-  // const fetchUserCampaigns = async () => {
-  //   setIsLoading(true);
-  //   const data = await getUserCampaigns();
-  //   setUserCampaigns(data);
-  //   setIsLoading(false);
-  // };
-
   useEffect(() => {
     if (contract) {
-      // fetchUserCampaigns();
       fetchDonators();
     }
   }, [contract, account]);
@@ -146,7 +138,6 @@ function CampaignDetails() {
             <Flex flex={2} direction="column" gap={'40px'}>
               <Box>
                 <chakra.h4
-                  // fontFamily="epilouge"
                   fontSize="18px"
                   fontWeight="semibold"
                   color={grayWhite}
@@ -161,14 +152,7 @@ function CampaignDetails() {
                   flexWrap="wrap"
                   gap="14px"
                 >
-                  <Flex
-                  // w="52px"
-                  // h="52px"
-                  // justifyItems="center"
-                  // justifyContent="center"
-                  // rounded="full"
-                  // bg="#2c2f32"
-                  >
+                  <Flex>
                     {/* TODO: add user image here */}
                     <Avatar />
                   </Flex>
@@ -211,7 +195,6 @@ function CampaignDetails() {
 
               <Box>
                 <chakra.h4
-                  // fontFamily="epilouge"
                   fontSize="18px"
                   fontWeight="semibold"
                   color={grayWhite}
@@ -260,7 +243,6 @@ function CampaignDetails() {
 
             <Box flex={1}>
               <chakra.h4
-                // fontFamily="epilouge"
                 fontSize="18px"
                 fontWeight="semibold"
                 color={grayWhite}
@@ -274,7 +256,6 @@ function CampaignDetails() {
                 direction="column"
                 p={4}
                 bg={bgColorValuegray}
-                // bg={useColorModeValue('gray.200', '#1c1c24')}
                 rounded="10px"
               >
                 <chakra.p fontSize="20px" textAlign="center">
@@ -299,13 +280,7 @@ function CampaignDetails() {
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
                   />
-                  <Box
-                    my="20px"
-                    p={4}
-                    rounded="10px"
-                    bg={bgColorValuewhite}
-                    // bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.200')}
-                  >
+                  <Box my="20px" p={4} rounded="10px" bg={bgColorValuewhite}>
                     <chakra.h4
                       fontSize="14px"
                       fontWeight="semibold"

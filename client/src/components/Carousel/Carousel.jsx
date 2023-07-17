@@ -48,14 +48,12 @@ export default function Carousel() {
       text: 'Unlock the power of Bitcoin crowdfunding with BitFundr - the innovative platform where project creators and backers come together to fuel innovation and shape the future of the Bitcoin ecosystem.',
       image:
         'https://img.freepik.com/free-vector/cryptocurrency-bitcoin-golden-coin-with-digital-circuit-lines-background_1017-33592.jpg?size=626&ext=jpg',
-      color: 'white',
     },
     {
       title: 'Join the Bitcoin Crowdfunding Revolution',
       text: 'Embrace the power of the Bitcoin community and be a catalyst for innovation on BitFundr. Join our platform to support groundbreaking projects, harness the benefits of the Rootstock blockchain, and make a meaningful impact within the Bitcoin ecosystem.',
       image:
         'https://img.freepik.com/free-photo/men-exchanging-bitcoin-with-copy-space_23-2148793793.jpg?w=1380&t=st=1689424707~exp=1689425307~hmac=96a9284c242d3243a61e6e053dd4c9cf34892690f1b741eada56a6c2dccdf3e8',
-      color: 'black',
     },
     {
       title: 'Discover Inspiring Projects and Make an Impact',

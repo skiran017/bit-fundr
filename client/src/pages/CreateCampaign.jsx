@@ -106,12 +106,6 @@ function CreateCampaign() {
               rounded="10px"
               bg={'#ff910026'}
             >
-              {/* <img
-            src={money}
-            alt="money"
-            className="w-[40px] h-[40px] object-contain"
-          /> */}
-              {/* <FaDollarSign /> */}
               <chakra.h4 fontWeight="bold" fontSize="26px" ml="20px">
                 You will get 100% of the raised amount
               </chakra.h4>

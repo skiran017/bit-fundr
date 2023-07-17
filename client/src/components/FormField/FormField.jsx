@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  FormLabel,
-  Textarea,
-  chakra,
-  Input,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { FormLabel, Textarea, chakra, Input } from '@chakra-ui/react';
 
 function FormField({
   labelName,
@@ -38,7 +32,6 @@ function FormField({
           py="16px"
           px={{ base: '26px', md: '16px' }}
           outline="none"
-          // bg="blackAlpha.100"
           fontSize="14px"
           rounded="10px"
           minW={{ sm: '300px' }}
@@ -65,7 +58,6 @@ function FormField({
           fontSize="14px"
           rounded="10px"
           minW={{ sm: '300px' }}
-          // bg="blackAlpha.100"
           _focus={{
             bg: 'whiteAlpha.100',
           }}

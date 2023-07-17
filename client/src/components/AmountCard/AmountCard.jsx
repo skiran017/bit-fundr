@@ -27,11 +27,6 @@ function AmountCard({
       rounded="14px"
       cursor="pointer"
       bg={useColorModeValue('gray.200', 'gray.900')}
-      // border="brand.custom"
-      // _hover={{
-      //   transform: 'scale(1.01)',
-      //   transition: '0.6s',
-      // }}
       boxShadow="brand.custom"
       mb="10px"
       w="440px"
@@ -45,17 +40,6 @@ function AmountCard({
         rounded="14px"
       />
       <Flex direction="column" p="4">
-        {/* TODO: make dynamic categories list*/}
-        {/* <Flex direction="row" justifyItems="center" mb="18px">
-          <Image
-            w="16px"
-            h="16px"
-            objectFit="contain"
-            alt="tag"
-            // src={tagType}
-          />
-          <Text>Education</Text>
-        </Flex> */}
 
         <Box display="block">
           <chakra.h3
@@ -63,7 +47,6 @@ function AmountCard({
             fontSize="16px"
             fontWeight="semibold"
             lineHeight="26px"
-            // truncate
           >
             {title}
           </chakra.h3>

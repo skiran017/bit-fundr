@@ -30,6 +30,7 @@ function Sidebar() {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
+      {/* TODO: add responsiveness */}
       {/* <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
