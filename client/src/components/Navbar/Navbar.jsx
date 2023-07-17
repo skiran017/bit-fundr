@@ -134,8 +134,7 @@ export default function Navbar() {
                     handleLogOut(rLoginResponse);
                     // localStorage.removeItem('WEB3_CONNECT_CACHED_PROVIDER');
                     // eslint-disable-next-line no-restricted-globals
-                    location.assign('/');
-                    // location.replace('/');
+                    location.reload();
                   }}
                 >
                   Logout
