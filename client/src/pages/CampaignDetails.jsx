@@ -118,7 +118,7 @@ function CampaignDetails() {
                     fontStyle="italic"
                     fontWeight="semibold"
                   >
-                    **This Campaign has expired.
+                    **This Campaign is expired.
                   </Box>
                 ) : null}
               </Box>
@@ -132,7 +132,7 @@ function CampaignDetails() {
             >
               <CounterBox
                 title="Days Left"
-                value={+remainingDays > 0 ? remainingDays : 'Expired'}
+                value={+remainingDays >= 0 ? remainingDays : 'Expired'}
               />
               <CounterBox
                 title={`Raised of ${state.target}`}
