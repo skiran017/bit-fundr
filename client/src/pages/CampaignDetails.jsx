@@ -264,7 +264,7 @@ function CampaignDetails() {
                 <Box mt="30px">
                   <Input
                     type="number"
-                    placeholder="0.1 ETH"
+                    placeholder="0.1 RBTC"
                     step="0.01"
                     w={'full'}
                     py="10px"
