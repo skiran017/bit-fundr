@@ -4,7 +4,7 @@ import {
   Box,
   Flex,
   Text,
-  Link,
+  
   Icon,
 } from '@chakra-ui/react';
 import { sibeBarLinkItems } from '../../../utils/constants';

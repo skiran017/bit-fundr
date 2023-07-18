@@ -9,7 +9,7 @@ import {
   useColorModeValue,
   Input,
   Avatar,
-  Text,
+  
 } from '@chakra-ui/react';
 import { useStateContext } from '../context';
 import CounterBox from '../components/CounterBox/CounterBox';
@@ -19,7 +19,7 @@ import { calculateBarPercentage, daysLeft } from '../utils/helpers';
 function CampaignDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { donate, getDonations, contract, account, getUserCampaigns } =
+  const { donate, getDonations, contract, account } =
     useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -43,12 +43,7 @@ function CampaignDetails() {
     setDonators(data);
   };
 
-  // const fetchUserCampaigns = async () => {
-  //   setIsLoading(true);
-  //   const data = await getUserCampaigns();
-  //   setUserCampaigns(data);
-  //   setIsLoading(false);
-  // };
+  
 
   useEffect(() => {
     if (contract) {
@@ -132,7 +127,7 @@ function CampaignDetails() {
             >
               <CounterBox
                 title="Days Left"
-                value={+remainingDays > 0 ? remainingDays : 'Expired'}
+                value={+remainingDays >= 0 ? remainingDays : 'Expired'}
               />
               <CounterBox
                 title={`Raised of ${state.target}`}
@@ -283,7 +278,7 @@ function CampaignDetails() {
                 <Box mt="30px">
                   <Input
                     type="number"
-                    placeholder="0.1 ETH"
+                    placeholder="0.1 RBTC"
                     step="0.01"
                     w={'full'}
                     py="10px"
