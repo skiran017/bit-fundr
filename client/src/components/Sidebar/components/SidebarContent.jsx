@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  useColorModeValue,
-  Box,
-  Flex,
-  Text,
-  Link,
-  Icon,
-} from '@chakra-ui/react';
+import { useColorModeValue, Box, Flex, Text, Icon } from '@chakra-ui/react';
 import { sibeBarLinkItems } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 
