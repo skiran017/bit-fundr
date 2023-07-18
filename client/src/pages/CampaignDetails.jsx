@@ -9,7 +9,6 @@ import {
   useColorModeValue,
   Input,
   Avatar,
-  Text,
 } from '@chakra-ui/react';
 import { useStateContext } from '../context';
 import CounterBox from '../components/CounterBox/CounterBox';
@@ -19,13 +18,13 @@ import { calculateBarPercentage, daysLeft } from '../utils/helpers';
 function CampaignDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { donate, getDonations, contract, account, getUserCampaigns } =
+  const { donate, getDonations, contract, account } =
     useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState([]);
-  // const [userCampaigns, setUserCampaigns] = useState([]);
+  
 
   const remainingDays = daysLeft(state.deadline);
   const bgColorValuegray = useColorModeValue('gray.200', 'gray.900');

@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  useColorModeValue,
-  Box,
-  Flex,
-  Text,
-  Link,
-  Icon,
-} from '@chakra-ui/react';
+import { useColorModeValue, Box, Flex, Text, Icon } from '@chakra-ui/react';
 import { sibeBarLinkItems } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 
@@ -51,11 +44,6 @@ function SidebarContent({ onClose, ...rest }) {
 
 const NavItem = ({ icon, children, handleClick, ...rest }) => {
   return (
-    // <Link
-    //   href={href}
-    //   style={{ textDecoration: 'none' }}
-    //   _focus={{ boxShadow: 'none' }}
-    // >
     <Flex
       align="center"
       p="4"
@@ -77,7 +65,6 @@ const NavItem = ({ icon, children, handleClick, ...rest }) => {
         <Icon
           mr="4"
           fontSize="20"
-          // color="brand.custom"
           _groupHover={{
             color: 'brand.custom',
           }}
@@ -87,7 +74,6 @@ const NavItem = ({ icon, children, handleClick, ...rest }) => {
       )}
       {children}
     </Flex>
-    // </Link>
   );
 };
 

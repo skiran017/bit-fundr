@@ -7,7 +7,6 @@ import {
   Heading,
   Text,
   Container,
-  useColorModeValue,
 } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
@@ -36,8 +35,6 @@ export default function Carousel() {
   // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '50%' });
   const side = useBreakpointValue({ base: '30%', md: '40px' });
-
-  const text = useColorModeValue('gray.600', 'gray.800');
 
   // This list contains all the data for carousels
   // This can be static or loaded from a server
