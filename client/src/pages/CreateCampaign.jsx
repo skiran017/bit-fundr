@@ -120,7 +120,7 @@ function CreateCampaign() {
             <Flex flexWrap="wrap" gap="40px">
               <FormField
                 labelName="Goal *"
-                placeholder="ETH 0.50"
+                placeholder="RBTC 0.50"
                 inputType="text"
                 value={form.target}
                 handleChange={e => handleFormFieldChange('target', e)}

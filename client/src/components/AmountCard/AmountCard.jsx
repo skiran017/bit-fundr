@@ -91,7 +91,7 @@ function AmountCard({
 
           <Flex direction="column">
             <chakra.h4>
-              {+remainingDays > 0 ? (
+              {+remainingDays >= 0 ? (
                 remainingDays
               ) : (
                 <chakra.p color="red" fontWeight="semibold" fontStyle="italic">
